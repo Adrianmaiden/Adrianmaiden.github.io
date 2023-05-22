@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bienvenido</title>
+</head>
+<body>
+  <h1>Información del Usuario</h1>
+  <h1 id="infoNombres"></h1> <h2 id="infoApellidos"></h2>
+  <p>Correo: <span id="infoCorreo"></span></p>
+  <p>Teléfono: <span id="infoTelefono"></span></p>
+  <p>Edad: <span id="infoEdad"></span> años</p>
+  <p id="infoContrasena"></p>
+
+  <script>
+    // Obtener los parámetros de la URL
+    const params = new URLSearchParams(window.location.search);
+
+    // Rellenar la información del usuario en la página de respuesta
+    document.getElementById('infoNombres').innerHTML = params.get('nombres');
+    document.getElementById('infoApellidos').innerHTML = params.get('apellidos');
+    document.getElementById('infoCorreo').innerHTML = '<a href="mailto:' + params.get('correo') + '">' + params.get('correo') + '</a>';
+    document.getElementById('infoTelefono').innerHTML = '<a href="tel:' + params.get('telefono') + '">' + params.get('telefono') + '</a>';
+    document.getElementById('infoEdad').innerHTML = params.get('edad');
+
+    // Verificar la seguridad de la contraseña
+    const contrasena = params.get('contrasena');
+    if (contrasena.length < 5) {
+      document.getElementById('infoContrasena').innerHTML = '¡Advertencia! Su contraseña es insegura.';
+    } else {
+      document.getElementById('infoContrasena').innerHTML = 'Contraseña segura.';
+    }
+  </script>
+</body>
+</html>
