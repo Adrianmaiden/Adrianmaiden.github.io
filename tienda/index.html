@@ -53,6 +53,7 @@
           var fechaNacimientoDate = new Date(fechaNacimiento);
           var fechaActual = new Date();
           var edad = fechaActual.getFullYear() - fechaNacimientoDate.getFullYear();
+          return edad;
     
           // Mostrar la información en la página de respuesta
           document.getElementById('infoNombres').innerHTML = nombres;
