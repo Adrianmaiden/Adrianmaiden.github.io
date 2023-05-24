@@ -1,74 +1,86 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Registro de Persona</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <h1>Registro de Persona</h1>
-    <form action="respuesta.html" method="get">
-      <label for="nombres">Nombres:</label>
-      <input type="text" id="nombres" name="nombres" required><br>
-  
-      <label for="apellidos">Apellidos:</label>
-      <input type="text" id="apellidos" name="apellidos" required><br>
-  
-      <label for="correo">Correo:</label>
-      <input type="email" id="correo" name="correo" required><br>
-  
-      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-      <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>
-  
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" required><br>
-  
-      <label for="usuario">Usuario:</label>
-      <input type="text" id="usuario" name="usuario" required><br>
-  
-      <label for="contrasena">Contraseña:</label>
-      <input type="password" id="contrasena" name="contrasena" required><br>
-  
-      <label for="repetirContrasena">Repetir Contraseña:</label>
-      <input type="password" id="repetirContrasena" name="repetirContrasena" required><br>
-  
-      <input type="submit" value="Registrar" onclick="mostrarInformacion()">
-    </form>
 
-    <script>
-        function mostrarInformacion() {
-          // Obtener los valores del formulario
-          var nombres = document.getElementById('nombres').value;
-          var apellidos = document.getElementById('apellidos').value;
-          var correo = document.getElementById('correo').value;
-          var fechaNacimiento = document.getElementById('fechaNacimiento').value;
-          var telefono = document.getElementById('telefono').value;
-          var usuario = document.getElementById('usuario').value;
-          var contrasena = document.getElementById('contrasena').value;
-    
-          // Calcular la edad actual
-          var fechaNacimientoDate = new Date(fechaNacimiento);
-          var fechaActual = new Date();
-          var edad = fechaActual.getFullYear() - fechaNacimientoDate.getFullYear();
-          return edad;
-    
-          // Mostrar la información en la página de respuesta
-          document.getElementById('infoNombres').innerHTML = nombres;
-          document.getElementById('infoApellidos').innerHTML = apellidos;
-          document.getElementById('infoCorreo').innerHTML = '<a href="mailto:' + correo + '">' + correo + '</a>';
-          document.getElementById('infoTelefono').innerHTML = '<a href="tel:' + telefono + '">' + telefono + '</a>';
-          document.getElementById('infoEdad').innerHTML = edad;
-    
-          // Verificar la seguridad de la contraseña
-          if (contrasena.length < 5) {
-            document.getElementById('infoContrasena').innerHTML = '¡Advertencia! Su contraseña es insegura.';
-          } else {
-            document.getElementById('infoContrasena').innerHTML = 'Contraseña segura.';
-          }
-        }
-      </script>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Registro de Persona</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <script src='main.js'></script>
+</head>
+
+<body>
+  <h1>Registro de Persona</h1>
+  <form action="respuesta.html" method="get" onsubmit="return mostrarInformacion()">
+    <label for="nombres">Nombres:</label>
+    <input type="text" id="nombres" name="nombres" required><br>
+
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" required><br>
+
+    <label for="correo">Correo:</label>
+    <input type="email" id="correo" name="correo" required><br>
+
+    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>
+
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono" required><br>
+
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" name="usuario" required><br>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" name="contrasena" required><br>
+
+    <label for="repetirContrasena">Repetir Contraseña:</label>
+    <input type="password" id="repetirContrasena" name="repetirContrasena" required><br>
+
+    <input type="submit" value="Registrar" onclick="mostrarInformacion()">
+  </form>
+
+  <script>
+    function mostrarInformacion() {
+      // Obtener los valores del formulario
+      var nombres = document.getElementById('nombres').value;
+      var apellidos = document.getElementById('apellidos').value;
+      var correo = document.getElementById('correo').value;
+      var fechaNacimiento = document.getElementById('fechaNacimiento').value;
+      var telefono = document.getElementById('telefono').value;
+      var usuario = document.getElementById('usuario').value;
+      var contrasena = document.getElementById('contrasena').value;
+
+      // Verificar la longitud de la contraseña
+      if (contrasena.length < 5) {
+        alert("La contraseña es demasiado corta. Debe tener al menos 5 caracteres.");
+        return false; // Evita que se realice el registro
+      }
+
+      // Calcular la edad actual
+
+      var arr = getParameter("FechaNacimiento")
+      let arr_split = arr.split('-');
+      var num = 2023 - arr_split[0]
+
+      // Mostrar la información en la página de respuesta
+      document.getElementById('infoNombres').innerHTML = nombres;
+      document.getElementById('infoApellidos').innerHTML = apellidos;
+      document.getElementById('infoCorreo').innerHTML = '<a href="mailto:' + correo + '">' + correo + '</a>';
+      document.getElementById('infoTelefono').innerHTML = '<a href="tel:' + telefono + '">' + telefono + '</a>';
+      document.getElementById('infoEdad').innerHTML = num;
+
+      // Verificar la seguridad de la contraseña
+      if (contrasena.length < 5) {
+        document.getElementById('infoContrasena').innerHTML = '¡Advertencia! Su contraseña es insegura.';
+      } else {
+        document.getElementById('infoContrasena').innerHTML = 'Contraseña segura.';
+      }
+
+      // Verificar la seguridad de la contraseña
+      document.getElementById('infoContrasena').innerHTML = 'Contraseña segura.';
+    }
+  </script>
 </body>
+
 </html>

@@ -15,6 +15,15 @@
     // Obtener los parámetros de la URL
     const params = new URLSearchParams(window.location.search);
 
+    // Obtener los valores del formulario
+    var nombres = document.getElementById('nombres').value;
+      var apellidos = document.getElementById('apellidos').value;
+      var correo = document.getElementById('correo').value;
+      var fNac = document.getElementById('fechaNacimiento').value;
+      var telefono = document.getElementById('telefono').value;
+      var usuario = document.getElementById('usuario').value;
+      var contrasena = document.getElementById('contrasena').value;
+
     // Rellenar la información del usuario en la página de respuesta
     document.getElementById('infoNombres').innerHTML = params.get('nombres');
     document.getElementById('infoApellidos').innerHTML = params.get('apellidos');
@@ -28,6 +37,16 @@
       document.getElementById('infoContrasena').innerHTML = '¡Advertencia! Su contraseña es insegura.';
     } else {
       document.getElementById('infoContrasena').innerHTML = 'Contraseña segura.';
+    }
+
+    var edad = 0;
+    var anio = fNac.substring(0,4);
+    fNac = parseInt(fNac,10);
+    if(fNac < 2023){
+        edad=2023 - fNac;
+        document.getElementById("infoContrasena").innerHTML = "Tu edad es: "+ edad;
+    }else{
+        document.getElementById("infoContrasena").innerHTML = "No puedes nacer en año mayor al actual";
     }
   </script>
 </body>

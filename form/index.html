@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Registro</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/estilo.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <h1>Registro de Persona</h1>
+    <form action="respuesta.html" method="get" onsubmit="return validarContrasena">
+        <label>Nombres: </label><input type="text" name="nombres"><br>
+        <label>Apellidos: </label><input type="text" name="apellidos"><br>
+        <label>Correo: </label><input type="email" name="email"><br>
+        <label>Fecha de nacimiento: </label><input type="datetime-local" name="fecha_nacimiento"><br>
+        <label>Telefono: </label><input type="tel" name="telefono"><br>
+        <label>Usuario: </label><input type="text" name="usuario"><br>
+        <label>Constraseña: </label><input type="" name="contra1"><br>
+        <label>Repetir contraseña: </label><input type="" name="contra2"><br>
+        <input type="submit" value="Registrar" onclick="validarContrasena()">
+    </form>
+    <script>
+        function validarContrasena() {
+            // Verificar la longitud de la contraseña
+            if (contrasena.length < 5) {
+                alert("La contraseña es demasiado corta. Debe tener al menos 5 caracteres.");
+                return false; // Evita que se realice el registro
+            }
+
+            // Verificar la seguridad de la contraseña
+            if (contrasena.length < 5) {
+                document.getElementById('').innerHTML = '¡Advertencia! Su contraseña es insegura.';
+            } else {
+                document.getElementById('').innerHTML = 'Contraseña segura.';
+            }
+
+            // Verificar la seguridad de la contraseña
+            document.getElementById('').innerHTML = 'Contraseña segura.';
+        }
+    </script>
+</body>
+
+</html>
